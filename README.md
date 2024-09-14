@@ -3,8 +3,8 @@
 
 Have you ever been to a really good Taco Bell and wished you could share your experience with similar bell fanatics? Many of us are too shy to post our Taco Bell experiences to popular social media platforms. With **Bell Share**, you can show pictures of your most recent Taco Bell order, with a 5-star rating system and a brief description for why you gave the order its rating. Join groups with your friends to see everyone’s posts in one, concise place.
 
-<img src="images/Bell Share rough draft (Page 1).png" alt="Alt Text" width="300" height="200" style="transform: rotate(90deg);">
-<img src="images/Bell Share rough draft (Page 2).png" alt="Alt Text" width="300" height="200" style="transform: rotate(90deg);">
+<img src="images/Bell Share rough draft (Page 1).png" alt="Alt Text" width="550" height="425" style="transform: rotate(180deg);">
+<img src="images/Bell Share rough draft (Page 2).png" alt="Alt Text" width="550" height="425"> #style="transform: rotate(180deg);">
 
 ### Key Features:
 - Message System 
