@@ -1,41 +1,40 @@
-.login {
+header {
+    background-color: #f8f9fa;
+    padding: 20px;
+    display: flex;
+    justify-content: center; /* Centers the search bar */
+    align-items: center;
+    position: relative;
+}
+
+
+.links {
     position: absolute;
-    right: 20px; /* Aligns the link to the right */
+    right: 20px; 
     top: 20px;
+    display: flex;
+    gap: 20px; 
+}
+
+.links a {
     text-decoration: none;
     font-size: 16px;
     font-weight: bold;
     color: #007BFF;
 }
 
-
-
-footer {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    background-color: #f1f1f1;
-    padding: 10px;
-    text-align: left; /* Align text to the left */
+.links a:hover {
+    color: #0056b3; 
 }
 
-header {
-    background-color: #f8f9fa;
-    padding: 20px;
-    text-align: center; /* Center-aligns the content in the header */
-    position: relative;
-}
-
-/* Style for the search bar */
 .search-container {
-    display: inline-block; /* Make sure the container takes only the necessary space */
+    display: inline-block; 
 }
 
 input[type="text"] {
     padding: 10px;
     font-size: 16px;
-    width: 300px; /* Set width of the search bar */
+    width: 300px; 
     border: 1px solid #ccc;
     border-radius: 5px;
 }
