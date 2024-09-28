@@ -12,8 +12,11 @@
 
 
 footer {
-    margin-top: auto; 
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
     background-color: #f1f1f1;
-    padding: 20px;
-    text-align: center;
+    padding: 10px;
+    text-align: left; /* Align text to the left */
 }
