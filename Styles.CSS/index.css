@@ -74,3 +74,20 @@ footer {
 .create-group:hover {
     background-color: #702082; 
 }
+
+.message-friends {
+    padding: 10px 20px;
+    font-size: 16px;
+    background-color: #A77BCA; 
+    color: white; 
+    border: none; 
+    border-radius: 5px; 
+    cursor: pointer; 
+    position: absolute; 
+    bottom: 20px;
+    right: 20px; 
+}
+
+.message-friends:hover {
+    background-color: #702082; 
+}
