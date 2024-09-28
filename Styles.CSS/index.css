@@ -52,3 +52,25 @@ input[type="submit"] {
 input[type="submit"]:hover {
     background-color: #702082;
 }
+
+
+footer {
+    background-color: #f8f9fa;
+    padding: 20px;
+    position: relative;
+    text-align: left; 
+}
+
+.create-group {
+    padding: 10px 20px;
+    font-size: 16px;
+    background-color: #A77BCA;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.create-group:hover {
+    background-color: #702082; 
+}

@@ -5,3 +5,9 @@
 
 #login page
     -added login button and place holder text on login page(boston)
+
+
+#Color 
+-Taco Bell Dark Purple: #702082
+-Taco Bell Light Purple: #A77BCA
+-Taco Bell Black: #000000
