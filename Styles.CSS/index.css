@@ -1,0 +1,11 @@
+.login {
+    position: absolute;
+    top: 10px; /* distance from the top */
+    right: 10px; /* distance from the right */
+    text-decoration: none;
+    font-size: 16px;
+    background-color: #007BFF;
+    color: white;
+    padding: 10px;
+    border-radius: 5px;
+}
