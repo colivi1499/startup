@@ -141,3 +141,14 @@ footer {
     color: #0366d6; /* GitHub link color */
     font-weight: bold; /* Bold text */
 }
+
+.logo-container {
+    float: left; /* Aligns the logo to the left */
+}
+
+.logo {
+    height: 50px; /* Adjust the height as needed */
+    margin-right: 20px; /* Space between logo and search bar */
+}
+
+
