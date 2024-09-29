@@ -53,6 +53,43 @@ input[type="submit"]:hover {
     background-color: #702082;
 }
 
+.groups-section {
+    text-align: center;
+    margin: 20px;
+  }
+  
+  .groups-section h2 {
+    font-size: 24px;
+    margin-bottom: 20px;
+  }
+  
+  .group-list {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  .group-list li {
+    font-size: 18px;
+    padding: 10px;
+    background-color: #f0f0f0;
+    margin: 10px 0;
+    border-radius: 5px;
+  }
+
+  .group-button {
+    width: 100%;
+    padding: 15px;
+    font-size: 18px;
+    background-color: #A77BCA;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .group-button:hover {
+    background-color: #702082;
+  }
 
 footer {
     background-color: #f8f9fa;
