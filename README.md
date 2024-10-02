@@ -22,3 +22,17 @@ Have you ever been to a really good Taco Bell and wished you could share your ex
 - **Authentication**: Passwords should be hashed and verified with the database at login. Each login session should create a new authentication token that is required for user data access and manipulation.
 - **Database Data**: Usernames and hashed passwords should be stored in a database.
 - **WebSocket Data**: When messages are sent between active groups, they should be notified without having to manually refresh.
+
+
+### HTML Deliverable
+- **Main Page**
+    - added search bar
+    - added add friend and login button
+    - added Taco Bell logo
+    - added buttons for groups in list
+    - added create group holder, weather, and message friends placeholder button
+    - added link to shared github and to login page
+- **Group Page**
+    - created placeholder for group information in database
+- **Login Page**
+    - added in simple login page
