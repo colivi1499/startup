@@ -2,54 +2,52 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="Styles.CSS/index.css">
     <title>Document</title>
 </head>
-<body>
-
-    <header>
-         <!-- Taco Bell Logo on the top left -->
     
-    <div class="logo-container">
-        <img src="..\images\Taco-Bell-Logo.png" alt="Taco Bell Logo" class="logo">
-    </div>
-        <!-- Search bar centered in the header -->
-        <div class="search-container">
-            <form action="/search">
-                <input type="text" placeholder="Search..." name="search">
-                <input type="submit" value="Search">
+<body>
+    <header class="bg-light p-3">
+        <div class="container-fluid d-flex justify-content-between align-items-center">
+            <!-- Taco Bell Logo on the top left -->
+            <div class="logo-container">
+                <img src="../images/Taco-Bell-Logo.png" alt="Taco Bell Logo" class="logo">
+            </div>
+            <!-- Search bar centered in the header -->
+            <form class="d-flex" action="/search">
+                <input class="form-control me-2" type="search" placeholder="Search..." aria-label="Search" name="search">
+                <button class="btn btn-primary" type="submit">Search</button>
             </form>
-        </div>
-
-        <!-- Add Friend and Login links on the top right -->
-        <div class="links">
-            <a href="add-friend.html" class="add-friend">Add Friend</a>
-            <a href="login.html" class="login">LOGIN</a>
+            <!-- Add Friend and Login links on the top right -->
+            <div class="d-flex gap-3">
+                <a href="add-friend.html" class="btn btn-link">Add Friend</a>
+                <a href="login.html" class="btn btn-link">LOGIN</a>
+            </div>
         </div>
     </header>
 
-    <main>
-        <section class="groups-section">
+    <main class="container my-4">
+        <section class="groups-section text-center">
             <h2>Your Groups</h2>
-            <ul class="group-list">
-                <li><button class="group-button" onclick="location.href='group.html'">Group 1</button></li>
-                <li><button class="group-button" onclick="location.href='group.html'">Group 2</button></li>
+            <ul class="list-unstyled">
+                <li><button class="btn btn-primary w-100 my-2" onclick="location.href='group.html'">Group 1</button></li>
+                <li><button class="btn btn-primary w-100 my-2" onclick="location.href='group.html'">Group 2</button></li>
             </ul>
         </section>
     </main>
 
-   
-    <footer>
-        <button class="create-group">Create Group</button>
-
-        <button class="weather-button">Local Weather "API Call" </button>
-
-        <button class="message-friends">Message Friends "websocket"</button>
-
+    <footer class="bg-light py-3">
+        <div class="container d-flex justify-content-between">
+            <button class="btn btn-primary">Create Group</button>
+            <button class="btn btn-primary">Local Weather "API Call"</button>
+            <button class="btn btn-primary">Message Friends "websocket"</button>
+        </div>
     </footer>
 
+    <a href="https://github.com/colivi1499/startup" target="_blank" class="position-fixed bottom-0 start-0 m-3 text-primary">
+        Github - Boston, Wade, Cameron
+    </a>
 </body>
-<a href="https://github.com/colivi1499/startup" target="_blank" class=".github-link ">Github - Boston, Wade, Cameron</a>
-
 
 </html>
