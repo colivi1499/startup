@@ -50,3 +50,6 @@ Have you ever been to a really good Taco Bell and wished you could share your ex
 - **Group Page**
     - color scheme updated
     - kept placeholders from last time
+- **Login Page**
+    - added the color scheme
+    - kept the placeholder for simple login page
