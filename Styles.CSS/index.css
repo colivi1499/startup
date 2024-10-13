@@ -14,7 +14,7 @@
 }
 
 .purple-btn:active { 
-    background-color: #702082;
+    background-color: #702082 !important;
 }
 
 .purple-lnk {
@@ -25,3 +25,6 @@
     color: #702082;
 }
 
+.purple-lnk:active {
+    color: #702082 !important;
+}
