@@ -36,3 +36,14 @@ Have you ever been to a really good Taco Bell and wished you could share your ex
     - created placeholder for group information in database
 - **Login Page**
     - added in simple login page
+
+
+### CSS Deliverable
+- **Main Page**
+    - utilized bootstrap to do the folowing
+    - modified colors to Taco Bell theme
+    - added a header and footer
+    - added functionality to navigation buttons
+    - button elements to group page placeholder
+    - button placeholders for create group, local weather, and message friends
+    - modified elements to resize with screen
