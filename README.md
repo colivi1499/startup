@@ -47,3 +47,6 @@ Have you ever been to a really good Taco Bell and wished you could share your ex
     - button elements to group page placeholder
     - button placeholders for create group, local weather, and message friends
     - modified elements to resize with screen
+- **Group Page**
+    - color scheme updated
+    - kept placeholders from last time
