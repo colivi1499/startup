@@ -2,3 +2,21 @@
     height: 50px;
     margin-right: 20px;
 }
+
+.purple-btn {
+    background-color: #A77BCA; /* Custom background color */
+    color: white;              /* Text color */
+    border: none;              /* Remove border */
+}
+
+.purple-btn:hover {
+    background-color: #702082; /* Darker shade on hover */
+}
+
+.purple-lnk {
+    color: #A77BCA;
+}
+
+.purple-lnk:hover {
+    color: #702082;
+}
