@@ -59,3 +59,7 @@ Have you ever been to a really good Taco Bell and wished you could share your ex
 **ITS NOT ALWAYS SPIDER MAN ITS ABOUT THE METS**
 
 **I LOVE THE METS**
+
+**I SHOULVE JOINED THE MILITARY**
+
+**BOSTON IS SUPER HOT I LOVE HIM SO MUCH**
