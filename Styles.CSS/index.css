@@ -13,6 +13,10 @@
     background-color: #702082; /* Darker shade on hover */
 }
 
+.purple-btn:active { 
+    background-color: #702082;
+}
+
 .purple-lnk {
     color: #A77BCA;
 }
@@ -20,3 +24,4 @@
 .purple-lnk:hover {
     color: #702082;
 }
+
