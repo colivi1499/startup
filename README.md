@@ -53,3 +53,7 @@ Have you ever been to a really good Taco Bell and wished you could share your ex
 - **Login Page**
     - added the color scheme
     - kept the placeholder for simple login page
+- **React Frontend**
+    - React added to front end
+    - vite bundled
+    - couldn't fix logo image problem 
