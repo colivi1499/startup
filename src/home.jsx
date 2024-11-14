@@ -1,8 +1,14 @@
 import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './home.css';
+import { useNavigate } from 'react-router-dom';
 
 export default function Home() {
+  const navigate = useNavigate();
+
+  const goToGroupPage = () => {
+    navigate('/group');  // Navigate to the /group page
+  };
   return (
     <div className="d-flex flex-column min-vh-100">
       <header className="bg-light p-3">
@@ -32,14 +38,20 @@ export default function Home() {
           <h2>Your Groups</h2>
           <ul className="list-unstyled">
             <li>
-              <button className="btn btn-primary w-100 my-2 purple-btn" onClick={() => window.location.href = 'group.html'}>
-                Group 1
-              </button>
+            <button
+          className="btn btn-primary w-100 my-2 purple-btn"
+          onClick={goToGroupPage}
+        >
+          Group 1
+        </button>
             </li>
             <li>
-              <button className="btn btn-primary w-100 my-2 purple-btn" onClick={() => window.location.href = 'group.html'}>
-                Group 2
-              </button>
+            <button
+          className="btn btn-primary w-100 my-2 purple-btn"
+          onClick={goToGroupPage}
+        >
+          Group 2
+        </button>
             </li>
           </ul>
         </section>
