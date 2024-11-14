@@ -9,6 +9,11 @@ export default function Home() {
   const goToGroupPage = () => {
     navigate('/group');  // Navigate to the /group page
   };
+
+  const goToLoginPage = () => {
+    navigate('/'); // Navigate to the /login page
+  }
+  
   return (
     <div className="d-flex flex-column min-vh-100">
       <header className="bg-light p-3">
@@ -28,7 +33,9 @@ export default function Home() {
           {/* Add Friend and Login links on the top right */}
           <div className="d-flex gap-3">
             <a href="add-friend.html" className="btn btn-link purple-lnk">Add Friend</a>
-            <a href="login.html" className="btn btn-link purple-lnk">LOGIN</a>
+            <button onClick={goToLoginPage} className="btn btn-link purple-lnk">
+              LOGIN
+            </button>
           </div>
         </div>
       </header>
