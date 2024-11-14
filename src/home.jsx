@@ -13,13 +13,17 @@ export default function Home() {
   const goToLoginPage = () => {
     navigate('/'); // Navigate to the /login page
   }
-  
+
+  const goToHomePage = () => {
+    navigate('/home'); // Navigate to the /home page
+  }
+
   return (
     <div className="d-flex flex-column min-vh-100">
       <header className="bg-light p-3">
         <div className="container-fluid d-flex justify-content-between align-items-center">
           {/* Taco Bell Logo on the top left */}
-          <div className="logo-container">
+          <div className="logo-container" onClick={goToHomePage} style={{ cursor: 'pointer' }}>
             <img src="../images/Taco-Bell-Logo.png" alt="Taco Bell Logo" className="logo" />
           </div>
           <a href="https://github.com/colivi1499/startup" target="_blank" rel="noopener noreferrer" className="text-primary">
