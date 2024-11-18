@@ -53,7 +53,13 @@ Have you ever been to a really good Taco Bell and wished you could share your ex
 - **Login Page**
     - added the color scheme
     - kept the placeholder for simple login page
+
+
+### React Deliverable
 - **React Frontend**
     - React added to front end
     - vite bundled
-    - couldn't fix logo image problem 
+    - App.jsx utilized, with different React components for each webpage
+    - Login react components utilized to set up saving username and password
+    - Buttons reconfigured to actually link to different pages
+    - Implemented hooks in app.jsx
