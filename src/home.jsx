@@ -1,80 +1,224 @@
-import React from 'react';
+import React, { useState } from "react";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './home.css';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from "react-router-dom";
 
 export default function Home() {
   const navigate = useNavigate();
 
-  const goToGroupPage = () => {
-    navigate('/group');  // Navigate to the /group page
+  // State for modal and posts
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [selectedLocation, setSelectedLocation] = useState(""); // Location selection
+  const [selectedMenuItem, setSelectedMenuItem] = useState(""); // Menu item selection
+  const [rating, setRating] = useState(0); // Star rating
+  const [posts, setPosts] = useState([]); // Store all posts
+
+  // Open and Close Modal Handlers
+  const openModal = () => setIsModalOpen(true);
+  const closeModal = () => {
+    setIsModalOpen(false);
+    setRating(0); // Reset rating on close
+    setSelectedLocation(""); // Reset location
+    setSelectedMenuItem(""); // Reset menu item
   };
 
-  const goToLoginPage = () => {
-    navigate('/'); // Navigate to the /login page
-  }
+  // Handle Form Submission
+  const handlePostSubmit = (event) => {
+    event.preventDefault();
 
-  const goToHomePage = () => {
-    navigate('/home'); // Navigate to the /home page
-  }
+    if (selectedLocation && selectedMenuItem && rating > 0) {
+      // Create a new post object
+      const newPost = {
+        location: selectedLocation,
+        menuItem: selectedMenuItem,
+        rating: rating,
+      };
+
+      // Add the new post to the posts array
+      setPosts([...posts, newPost]);
+
+      closeModal(); // Close the modal
+    }
+  };
+
+  // Render Stars for Rating
+  const renderStars = (rating) => {
+    return (
+      <div className="rating">
+        {[1, 2, 3, 4, 5].map((star) => (
+          <span
+            key={star}
+            className={`star ${rating >= star ? "selected" : ""}`}
+          >
+            ★
+          </span>
+        ))}
+      </div>
+    );
+  };
 
   return (
     <div className="d-flex flex-column min-vh-100">
       <header className="bg-light p-3">
         <div className="container-fluid d-flex justify-content-between align-items-center">
-          {/* Taco Bell Logo on the top left */}
-          <div className="logo-container" onClick={goToHomePage} style={{ cursor: 'pointer' }}>
+          <div
+            className="logo-container"
+            onClick={() => navigate("/home")}
+            style={{ cursor: "pointer" }}
+          >
             <img src="../images/Taco-Bell-Logo.png" alt="Taco Bell Logo" className="logo" />
           </div>
-          <a href="https://github.com/colivi1499/startup" target="_blank" rel="noopener noreferrer" className="text-primary">
+          <a
+            href="https://github.com/colivi1499/startup"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-primary"
+          >
             Github - Boston, Wade, Cameron
           </a>
-          {/* Search bar centered in the header */}
           <form className="d-flex" action="/search">
-            <input className="form-control me-2" type="search" placeholder="Search..." aria-label="Search" name="search" />
-            <button className="btn btn-primary purple-btn" type="submit">Search</button>
+            <input
+              className="form-control me-2"
+              type="search"
+              placeholder="Search..."
+              aria-label="Search"
+              name="search"
+            />
+            <button className="btn btn-primary purple-btn" type="submit">
+              Search
+            </button>
           </form>
-          {/* Add Friend and Login links on the top right */}
           <div className="d-flex gap-3">
-            <a href="add-friend.html" className="btn btn-link purple-lnk">Add Friend</a>
-            <button onClick={goToLoginPage} className="btn btn-link purple-lnk">
+            <a href="add-friend.html" className="btn btn-link purple-lnk">
+              Add Friend
+            </a>
+            <button onClick={() => navigate("/")} className="btn btn-link purple-lnk">
               LOGOUT
             </button>
           </div>
         </div>
       </header>
 
+      {/* Main Section for Posts */}
       <main className="container my-4">
-        <section className="groups-section text-center">
-          <h2>Your Groups</h2>
-          <ul className="list-unstyled">
-            <li>
-            <button
-          className="btn btn-primary w-100 my-2 purple-btn"
-          onClick={goToGroupPage}
-        >
-          Group 1
-        </button>
-            </li>
-            <li>
-            <button
-          className="btn btn-primary w-100 my-2 purple-btn"
-          onClick={goToGroupPage}
-        >
-          Group 2
-        </button>
-            </li>
-          </ul>
-        </section>
-      </main>
+  <h2>Your Posts</h2>
+  <div className="posts-container">
+    {posts.length > 0 ? (
+      <table className="table">
+        <thead>
+          <tr>
+            <th style={{ width: "40%" }}>Menu Item</th>
+            <th style={{ width: "20%" }}>Rating</th>
+            <th style={{ width: "40%" }}>Location</th>
+          </tr>
+        </thead>
+        <tbody>
+          {posts.map((post, index) => (
+            <tr key={index}>
+              <td>{post.menuItem}</td>
+              <td>
+                <div className="rating">{renderStars(post.rating)}</div>
+              </td>
+              <td>{post.location}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    ) : (
+      <p className="text-muted">No posts yet. Click "Create Post" to add one!</p>
+    )}
+  </div>
+</main>
+
 
       <footer className="bg-light py-3 mt-auto">
         <div className="container d-flex justify-content-between">
-          <button className="btn btn-primary purple-btn">Create Group</button>
+          <button className="btn btn-primary purple-btn" onClick={openModal}>
+            Create Post
+          </button>
           <button className="btn btn-primary purple-btn">Local Weather "API Call"</button>
           <button className="btn btn-primary purple-btn">Message Friends "websocket"</button>
         </div>
       </footer>
+
+      {/* Modal Popup */}
+{isModalOpen && (
+  <div className="modal-backdrop">
+    <div className="modal">
+      <form onSubmit={handlePostSubmit}>
+        <h2>Create a New Post</h2>
+
+        {/* Dropdown for Menu Item */}
+        <label htmlFor="menuItem" className="form-label">
+          Menu Item:
+        </label>
+        <select
+          id="menuItem"
+          className="form-select mb-3"
+          value={selectedMenuItem}
+          onChange={(e) => setSelectedMenuItem(e.target.value)}
+          required
+        >
+          <option value="">Select Menu Item</option>
+          <option value="Crunchy Taco">Crunchy Taco</option>
+          <option value="Burrito Supreme">Burrito Supreme</option>
+          <option value="Cheesy Gordita Crunch">Cheesy Gordita Crunch</option>
+          <option value="Nacho Fries">Nacho Fries</option>
+        </select>
+
+        {/* Star Rating */}
+        <label className="form-label">Rate Your Experience:</label>
+        <div className="rating mb-3">
+          {[1, 2, 3, 4, 5].map((star) => (
+            <span
+              key={star}
+              className={`star ${rating >= star ? "selected" : ""}`}
+              onClick={() => setRating(star)}
+            >
+              ★
+            </span>
+          ))}
+        </div>
+
+        {/* Dropdown for Location */}
+        <label htmlFor="location" className="form-label">
+          Location:
+        </label>
+        <select
+          id="location"
+          className="form-select mb-3"
+          value={selectedLocation}
+          onChange={(e) => setSelectedLocation(e.target.value)}
+          required
+        >
+          <option value="">Select Location</option>
+          <option value="Downtown Taco Bell">Downtown Taco Bell</option>
+          <option value="Suburban Taco Bell">Suburban Taco Bell</option>
+          <option value="Airport Taco Bell">Airport Taco Bell</option>
+        </select>
+
+        {/* Post Button */}
+        <button type="submit" className="btn btn-success">
+          Post
+        </button>
+
+        {/* Cancel Button */}
+        <button
+          type="button"
+          className="btn btn-secondary"
+          onClick={closeModal}
+        >
+          Cancel
+        </button>
+      </form>
+    </div>
+  </div>
+)}
+
     </div>
   );
 }
+
+
+
+

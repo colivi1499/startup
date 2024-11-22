@@ -1,26 +1,255 @@
+/* General Styling */
 .logo {
     height: 50px;
     margin-right: 20px;
-}
-
-.purple-btn {
-    background-color: #A77BCA; /* Custom background color */
-    color: white;              /* Text color */
-    border: none;              /* Remove border */
-}
-
-.purple-btn:hover {
-    background-color: #702082; /* Darker shade on hover */
-}
-
-.purple-btn:active { 
+  }
+  
+  .purple-btn {
+    background-color: #A77BCA;
+    color: white;
+    border: none;
+  }
+  
+  .purple-btn:hover {
+    background-color: #702082;
+  }
+  
+  .purple-btn:active {
     background-color: #702082 !important;
-}
-
-.purple-lnk {
+  }
+  
+  .purple-lnk {
     color: #A77BCA;
-}
-
-.purple-lnk:hover {
+  }
+  
+  .purple-lnk:hover {
     color: #702082;
-}
+  }
+  
+  /* Header and Footer Full Width */
+  header, footer {
+    width: 100vw;
+    position: relative;
+    left: 0;
+    margin: 0;
+    padding: 0;
+    background-color: #f8f9fa;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  }
+  
+  header .container-fluid, footer .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  /* Modal Styles */
+  .modal-backdrop {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .modal {
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    width: 400px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    position: relative;
+    z-index: 1001;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+  }
+  
+  .close-modal-button {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: transparent;
+    border: none;
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #a77bca;
+    cursor: pointer;
+  }
+  
+  /* Form Styling */
+  .form-select {
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 10px;
+    font-size: 16px;
+    color: #555;
+  }
+  
+  .form-select:focus {
+    border-color: #a77bca;
+    box-shadow: 0 0 5px rgba(167, 123, 202, 0.5);
+  }
+  
+  .btn-success {
+    background-color: #28a745;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .btn-success:hover {
+    background-color: #218838;
+  }
+  
+  /* Posts Layout */
+  .posts-container {
+    margin-top: 20px;
+  }
+  
+  .post-card {
+    background-color: #ffffff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 15px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    font-size: 16px;
+    color: #333;
+    display: flex;
+    flex-direction: column;
+    gap: 5px; /* Space between post fields */
+  }
+  
+  .post-card:hover {
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  }
+  
+  /* Empty Posts Message */
+  .no-posts {
+    margin-top: 20px;
+    text-align: center;
+    color: #888;
+    font-size: 18px;
+    font-style: italic;
+  }
+  
+  /* Footer Buttons Spacing */
+  footer .container {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    gap: 50px;
+  }
+  
+  .purple-btn {
+    flex: 1;
+    margin: 0 10px;
+  }
+  
+  .modal {
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    width: 300px; /* Maintain smaller width */
+    max-height: 90vh; /* Ensure it doesn't take more than 90% of the viewport height */
+    overflow-y: auto; /* Enable scrolling if content exceeds max height */
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    position: relative;
+  }
+  
+  /* Center the modal in the viewport */
+  .modal-backdrop {
+    display: flex;
+    justify-content: center; /* Horizontally center */
+    align-items: center; /* Vertically center */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5); /* Semi-transparent overlay */
+    z-index: 1000;
+  }
+  
+  
+  .modal h2 {
+    margin-bottom: 20px;
+  }
+  
+/* Table Styling */
+.table {
+    width: 100%; /* Ensure the table spans the container */
+    text-align: center; /* Center-align all content in the table */
+    border-collapse: collapse; /* Remove spacing between cells */
+  }
+  
+  .table th,
+  .table td {
+    padding: 10px;
+    vertical-align: middle; /* Center content vertically */
+  }
+  
+  .table th {
+    font-weight: bold;
+    border-bottom: 2px solid #ddd; /* Add a bottom border for headers */
+  }
+  
+  .table td {
+    border-bottom: 1px solid #eee; /* Add a subtle border between rows */
+  }
+  
+  /* Stars Alignment */
+  .rating {
+    display: flex;
+    justify-content: center; /* Center the stars horizontally */
+    gap: 5px; /* Add spacing between stars */
+  }
+  
+  .star {
+    font-size: 1.5rem;
+    color: #ccc; /* Default color for unselected stars */
+    cursor: default; /* No interaction needed for displayed stars */
+  }
+  
+  .star.selected {
+    color: #ffd700; /* Gold for selected stars */
+  }
+  
+  
+  
+  .star:hover {
+    color: #ffd700;
+  }
+  
+  .btn-secondary {
+    background-color: #6c757d;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .btn-secondary:hover {
+    background-color: #5a6268;
+  }
+  
+  .modal form button {
+    width: 100%;
+    margin-top: 10px;
+  }
+  
