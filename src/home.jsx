@@ -38,7 +38,7 @@ export default function Home() {
           <div className="d-flex gap-3">
             <a href="add-friend.html" className="btn btn-link purple-lnk">Add Friend</a>
             <button onClick={goToLoginPage} className="btn btn-link purple-lnk">
-              LOGIN
+              LOGOUT
             </button>
           </div>
         </div>
