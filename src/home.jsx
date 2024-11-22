@@ -19,7 +19,7 @@ export default function Home() {
   const [error, setError] = useState(null);
 
   // OpenWeatherMap API Key
-  const API_KEY = "4c64f585068ec7cd68428609a039b2a4"; // Replace with your OpenWeatherMap API key
+  const API_KEY = "blank"; // Replace with your OpenWeatherMap API key
 
   useEffect(() => {
     // Fetch user's current location
