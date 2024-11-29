@@ -1,86 +1,54 @@
+
 const express = require('express');
-const { v4: uuidv4 } = require('uuid'); // Import UUID library
 const app = express();
+const port = process.argv.length > 2 ? process.argv[2] : 4000; 
+
 
 app.use(express.json());
 
-// Example Existing Endpoints
+app.use(express.static('public'));
+
+
 app.get('/', (req, res) => {
-    res.send('Welcome to the Simon Service!');
+    res.send('Welcome to the HTTP service using Express!');
 });
 
-// New Endpoints
 
-// 1. Create a New Resource
-app.post('/api/resources', (req, res) => {
-    const { name, description } = req.body;
-
-    if (!name || !description) {
-        return res.status(400).json({ error: 'Name and description are required.' });
-    }
-
-    const newResource = {
-        id: uuidv4(),
-        name,
-        description,
-        createdAt: new Date()
-    };
-
-    // Logic to save newResource in the database or memory can be added here.
-
-    res.status(201).json(newResource);
-});
-
-// 2. Get All Resources
-app.get('/api/resources', (req, res) => {
-    // Fetch resources from database or memory.
-    const resources = [
-        { id: '1', name: 'Resource 1', description: 'First resource' },
-        { id: '2', name: 'Resource 2', description: 'Second resource' }
+app.get('/api/items', (req, res) => {
+    const items = [
+        { id: 1, name: 'Item 1' },
+        { id: 2, name: 'Item 2' },
+        { id: 3, name: 'Item 3' }
     ];
-
-    res.status(200).json(resources);
+    res.json(items);
 });
 
-// 3. Get a Single Resource by ID
-app.get('/api/resources/:id', (req, res) => {
+
+app.get('/api/items/:id', (req, res) => {
     const { id } = req.params;
-
-    // Logic to fetch the resource from database or memory can be added here.
-    const resource = { id, name: 'Resource 1', description: 'First resource' };
-
-    if (!resource) {
-        return res.status(404).json({ error: 'Resource not found' });
-    }
-
-    res.status(200).json(resource);
+    res.json({ id, name: `Item ${id}` });
 });
 
-// 4. Update a Resource by ID
-app.put('/api/resources/:id', (req, res) => {
+
+app.post('/api/items', (req, res) => {
+    const newItem = req.body;
+    newItem.id = Math.random().toString(36).substr(2, 9); 
+    res.status(201).json(newItem);
+});
+
+
+app.put('/api/items/:id', (req, res) => {
     const { id } = req.params;
-    const { name, description } = req.body;
-
-    if (!name || !description) {
-        return res.status(400).json({ error: 'Name and description are required.' });
-    }
-
-    // Logic to update the resource in the database or memory.
-
-    const updatedResource = { id, name, description };
-
-    res.status(200).json(updatedResource);
+    const updates = req.body;
+    res.json({ message: `Item ${id} updated`, updates });
 });
 
-// 5. Delete a Resource by ID
-app.delete('/api/resources/:id', (req, res) => {
+app.delete('/api/items/:id', (req, res) => {
     const { id } = req.params;
-
-    // Logic to delete the resource from database or memory.
-
-    res.status(204).send();
+    res.json({ message: `Item ${id} deleted` });
 });
 
-// Start the Server
-const PORT = process.env.PORT || 3000;
-app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
+
+app.listen(port, () => {
+    console.log(`Server running on http://localhost:${port}`);
+});

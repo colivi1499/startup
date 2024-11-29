@@ -1,47 +1,61 @@
-import React, { useState } from "react";
+
+import React, { useState, useEffect } from "react";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './home.css';
 import { useNavigate } from "react-router-dom";
 
 export default function Home() {
+  const [quoteData, setQuoteData] = useState(null); // State for the quote
+
+  // Fetch the quote on component mount
+  useEffect(() => {
+    const url = "https://quote.cs260.click";
+    fetch(url)
+      .then((x) => x.json())
+      .then((response) => {
+        setQuoteData(response); // Store the quote data as an object
+      })
+      .catch((error) => {
+        console.error("Error fetching quote:", error);
+      });
+  }, []);
   const navigate = useNavigate();
 
-  // State for modal and posts
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const [selectedLocation, setSelectedLocation] = useState(""); // Location selection
-  const [selectedMenuItem, setSelectedMenuItem] = useState(""); // Menu item selection
-  const [rating, setRating] = useState(0); // Star rating
-  const [posts, setPosts] = useState([]); // Store all posts
 
-  // Open and Close Modal Handlers
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [selectedLocation, setSelectedLocation] = useState(""); 
+  const [selectedMenuItem, setSelectedMenuItem] = useState(""); 
+  const [rating, setRating] = useState(0); 
+  const [posts, setPosts] = useState([]); 
+
   const openModal = () => setIsModalOpen(true);
   const closeModal = () => {
     setIsModalOpen(false);
-    setRating(0); // Reset rating on close
-    setSelectedLocation(""); // Reset location
-    setSelectedMenuItem(""); // Reset menu item
+    setRating(0); 
+    setSelectedLocation("");
+    setSelectedMenuItem(""); 
   };
 
-  // Handle Form Submission
+
   const handlePostSubmit = (event) => {
     event.preventDefault();
 
     if (selectedLocation && selectedMenuItem && rating > 0) {
-      // Create a new post object
+      
       const newPost = {
         location: selectedLocation,
         menuItem: selectedMenuItem,
         rating: rating,
       };
 
-      // Add the new post to the posts array
+      
       setPosts([...posts, newPost]);
 
-      closeModal(); // Close the modal
+      closeModal(); 
     }
   };
 
-  // Render Stars for Rating
+
   const renderStars = (rating) => {
     return (
       <div className="rating">
@@ -128,7 +142,20 @@ export default function Home() {
       <p className="text-muted">No posts yet. Click "Create Post" to add one!</p>
     )}
   </div>
-</main>
+
+        {/* Display the fetched quote */}
+        <div className="quote-container my-4">
+          <h3>Quote of the Day</h3>
+          {quoteData ? (
+            <blockquote className="blockquote">
+              <p>{quoteData.quote}</p>
+              <footer className="blockquote-footer">{quoteData.author}</footer>
+            </blockquote>
+          ) : (
+            <p>Loading quote...</p>
+          )}
+        </div>
+      </main>
 
 
       <footer className="bg-light py-3 mt-auto">
@@ -218,6 +245,7 @@ export default function Home() {
     </div>
   );
 }
+
 
 
 
