@@ -64,4 +64,10 @@ Have you ever been to a really good Taco Bell and wished you could share your ex
     - Buttons reconfigured to actually link to different pages
     - Implemented hooks in app.jsx
 
-## Service Deliverable
+### Service Deliverable
+- **Service**
+    - Front end and back end connected
+    - Express static middleware used
+    - HTTP service using Node.js and express
+    - Posts ready to be saved in database
+    - API quotes displayed on main page

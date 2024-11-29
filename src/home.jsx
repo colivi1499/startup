@@ -163,7 +163,6 @@ export default function Home() {
           <button className="btn btn-primary purple-btn" onClick={openModal}>
             Create Post
           </button>
-          <button className="btn btn-primary purple-btn">Local Weather "API Call"</button>
           <button className="btn btn-primary purple-btn">Message Friends "websocket"</button>
         </div>
       </footer>

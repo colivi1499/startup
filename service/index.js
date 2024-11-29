@@ -1,19 +1,14 @@
-
 const express = require('express');
+const path = require('path');
 const app = express();
-const port = process.argv.length > 2 ? process.argv[2] : 4000; 
-
+const port = process.argv.length > 2 ? process.argv[2] : 4000;
 
 app.use(express.json());
 
-app.use(express.static('public'));
+// Serve React static files from 'public'
+app.use(express.static(path.join(__dirname, 'public')));
 
-
-app.get('/', (req, res) => {
-    res.send('Welcome to the HTTP service using Express!');
-});
-
-
+// API routes
 app.get('/api/items', (req, res) => {
     const items = [
         { id: 1, name: 'Item 1' },
@@ -23,19 +18,16 @@ app.get('/api/items', (req, res) => {
     res.json(items);
 });
 
-
 app.get('/api/items/:id', (req, res) => {
     const { id } = req.params;
     res.json({ id, name: `Item ${id}` });
 });
 
-
 app.post('/api/items', (req, res) => {
     const newItem = req.body;
-    newItem.id = Math.random().toString(36).substr(2, 9); 
+    newItem.id = Math.random().toString(36).substr(2, 9);
     res.status(201).json(newItem);
 });
-
 
 app.put('/api/items/:id', (req, res) => {
     const { id } = req.params;
@@ -48,6 +40,10 @@ app.delete('/api/items/:id', (req, res) => {
     res.json({ message: `Item ${id} deleted` });
 });
 
+// React fallback route for client-side routing
+app.get('*', (req, res) => {
+    res.sendFile(path.join(__dirname, 'public', 'index.html'));
+});
 
 app.listen(port, () => {
     console.log(`Server running on http://localhost:${port}`);
