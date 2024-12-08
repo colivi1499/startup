@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import './login.css';
+import './signup.css';
 import { useNavigate } from 'react-router-dom';
 
-export default function Login() {
+export default function SignUp() {
   const navigate = useNavigate();
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
@@ -22,7 +22,7 @@ export default function Login() {
   return (
     <div className="login-container">
       <form className="login-form" onSubmit={handleSubmit}>
-        <h2>Login</h2>
+        <h2>Create an Account</h2>
 
         <div className="input-container">
           <label htmlFor="username">Username</label>
@@ -53,7 +53,6 @@ export default function Login() {
         <button type="submit">Login</button>
 
         <div className="footer-links">
-          <a href="/signup">Create an account</a>
         </div>
       </form>
     </div>

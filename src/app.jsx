@@ -4,6 +4,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Group from './group'
 import Home from './home'
 import Login from './login'
+import SignUp from './signup';
 
 function App() {
   
@@ -13,6 +14,7 @@ function App() {
           <Route path="/home" element={<Home />} />
           <Route path="/group" element={<Group />} />
           <Route path="/" element={<Login />} />
+          <Route path="/signup" element={<SignUp />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>
