@@ -24,11 +24,7 @@ export default function SignUp() {
         const data = await response.json();
         console.log(data.message);
         navigate('/home'); // Ensure this navigates correctly
-      } else {
-        const errorData = await response.json();
-        console.error('Error:', errorData.message);
-        alert(errorData.message); // Show an error message
-      }
+      } 
     } catch (error) {
       console.error('Network error:', error);
       alert('Unable to connect to the server.');

@@ -40,5 +40,6 @@ app.post('/signup', async (req, res) => {
     }
   });
 
-const PORT = 3000;
+const PORT = process.argv.length > 2 ? process.argv[2] : 3000;
+  
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
