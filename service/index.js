@@ -1,50 +1,44 @@
 const express = require('express');
-const path = require('path');
+const bodyParser = require('body-parser');
+const { connectToDB } = require('./database');
+
 const app = express();
-const port = process.argv.length > 2 ? process.argv[2] : 4000;
+app.use(bodyParser.json());
 
-app.use(express.json());
+app.post('/login', async (req, res) => {
+  const { username, password } = req.body;
 
-// Serve React static files from 'public'
-app.use(express.static(path.join(__dirname, 'public')));
+  try {
+    const db = await connectToDB();
+    const user = await db.collection('users').findOne({ username, password });
 
-// API routes
-app.get('/api/items', (req, res) => {
-    const items = [
-        { id: 1, name: 'Item 1' },
-        { id: 2, name: 'Item 2' },
-        { id: 3, name: 'Item 3' }
-    ];
-    res.json(items);
+    if (user) {
+      res.status(200).send({ message: 'Login successful' });
+    } else {
+      res.status(401).send({ message: 'Invalid credentials' });
+    }
+  } catch (error) {
+    res.status(500).send({ message: 'Internal server error' });
+  }
 });
 
-app.get('/api/items/:id', (req, res) => {
-    const { id } = req.params;
-    res.json({ id, name: `Item ${id}` });
-});
+app.post('/signup', async (req, res) => {
+    const { username, password } = req.body;
+  
+    try {
+      const db = await connectToDB();
+      const existingUser = await db.collection('users').findOne({ username });
+  
+      if (existingUser) {
+        return res.status(400).send({ message: 'User already exists' });
+      }
+  
+      await db.collection('users').insertOne({ username, password });
+      res.status(201).send({ message: 'User registered successfully' });
+    } catch (error) {
+      res.status(500).send({ message: 'Internal server error' });
+    }
+  });
 
-app.post('/api/items', (req, res) => {
-    const newItem = req.body;
-    newItem.id = Math.random().toString(36).substr(2, 9);
-    res.status(201).json(newItem);
-});
-
-app.put('/api/items/:id', (req, res) => {
-    const { id } = req.params;
-    const updates = req.body;
-    res.json({ message: `Item ${id} updated`, updates });
-});
-
-app.delete('/api/items/:id', (req, res) => {
-    const { id } = req.params;
-    res.json({ message: `Item ${id} deleted` });
-});
-
-// React fallback route for client-side routing
-app.get('*', (req, res) => {
-    res.sendFile(path.join(__dirname, 'public', 'index.html'));
-});
-
-app.listen(port, () => {
-    console.log(`Server running on http://localhost:${port}`);
-});
+const PORT = 3000;
+app.listen(PORT, () => console.log(`Server running on port ${PORT}`));

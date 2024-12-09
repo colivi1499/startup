@@ -8,16 +8,26 @@ export default function Login() {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
 
-  const handleSubmit = (event) => {
-    event.preventDefault(); // Prevent the default form submission behavior
-
-    // Logic for validating the username and password can go here
-    // For now, just navigate to the home page
-    console.log('Username:', username, 'Password:', password); // For debugging
-
-    // After form submission, navigate to the home page
-    navigate('/home');
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+  
+    const response = await fetch('/login', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ username, password }),
+    });
+  
+    if (response.ok) {
+      const data = await response.json();
+      console.log(data.message);
+      navigate('/home');
+    } else {
+      console.error('Login failed');
+    }
   };
+  
+
+  
 
   return (
     <div className="login-container">

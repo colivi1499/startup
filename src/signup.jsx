@@ -8,15 +8,31 @@ export default function SignUp() {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
 
-  const handleSubmit = (event) => {
-    event.preventDefault(); // Prevent the default form submission behavior
-
-    // Logic for validating the username and password can go here
-    // For now, just navigate to the home page
-    console.log('Username:', username, 'Password:', password); // For debugging
-
-    // After form submission, navigate to the home page
-    navigate('/home');
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+  
+    try {
+      const response = await fetch('/signup', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ username, password }),
+      });
+  
+      if (response.ok) {
+        const data = await response.json();
+        console.log(data.message);
+        navigate('/home'); // Ensure this navigates correctly
+      } else {
+        const errorData = await response.json();
+        console.error('Error:', errorData.message);
+        alert(errorData.message); // Show an error message
+      }
+    } catch (error) {
+      console.error('Network error:', error);
+      alert('Unable to connect to the server.');
+    }
   };
 
   return (
