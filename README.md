@@ -76,6 +76,6 @@ Have you ever been to a really good Taco Bell and wished you could share your ex
 - **Login**
     - Password Encryption
     - User information saved to Mongodb
-    - New User registration
+    - New User registration added
     - Existing User Authentication
     - Logout button works 
