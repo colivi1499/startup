@@ -7,27 +7,35 @@ export default function Login() {
   const navigate = useNavigate();
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
+  const [errorMessage, setErrorMessage] = useState('');
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-  
-    const response = await fetch('/login', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ username, password }),
-    });
-  
-    if (response.ok) {
+
+    if (username.trim() === '' || password.trim() === '') {
+      setErrorMessage('Both username and password are required.');
+      return;
+    }
+
+    try {
+      const response = await fetch('/api/login', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ username, password }),
+      });
+
       const data = await response.json();
-      console.log(data.message);
-      navigate('/home');
-    } else {
-      console.error('Login failed');
+
+      if (response.ok) {
+        console.log(data.message);
+        navigate('/home');
+      } else {
+        setErrorMessage(data.message || 'Invalid username or password.');
+      }
+    } catch (error) {
+      setErrorMessage('An error occurred. Please try again later.');
     }
   };
-  
-
-  
 
   return (
     <div className="login-container">
@@ -62,6 +70,8 @@ export default function Login() {
 
         <button type="submit">Login</button>
 
+        {errorMessage && <p className="error-message">{errorMessage}</p>}
+
         <div className="footer-links">
           <a href="/signup">Create an account</a>
         </div>
@@ -69,3 +79,8 @@ export default function Login() {
     </div>
   );
 }
+
+
+  
+
+  

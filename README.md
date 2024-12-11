@@ -71,3 +71,11 @@ Have you ever been to a really good Taco Bell and wished you could share your ex
     - HTTP service using Node.js and express
     - Posts ready to be saved in database
     - API quotes displayed on main page
+
+### Login Deliverable
+- **Login**
+    - Password Encryption
+    - User information saved to Mongodb
+    - New User registration
+    - Existing User Authentication
+    - Logout button works 

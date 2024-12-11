@@ -7,27 +7,46 @@ export default function SignUp() {
   const navigate = useNavigate();
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
+  const [message, setMessage] = useState('');
+  const [isLoading, setIsLoading] = useState(false);
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-  
+
+    if (username.length < 3) {
+      setMessage('Username must be at least 3 characters long.');
+      return;
+    }
+
+    if (password.length < 6) {
+      setMessage('Password must be at least 6 characters long.');
+      return;
+    }
+
+    setIsLoading(true);
+
     try {
-      const response = await fetch('/signup', {
+      const response = await fetch('/api/signup', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({ username, password }),
       });
-  
+
+      const data = await response.json();
+
       if (response.ok) {
-        const data = await response.json();
-        console.log(data.message);
-        navigate('/home'); // Ensure this navigates correctly
-      } 
+        setMessage('Signup successful! Redirecting...');
+        setTimeout(() => navigate('/home'), 2000);
+      } else {
+        setMessage(data.message || 'Signup failed. Please try again.');
+      }
     } catch (error) {
       console.error('Network error:', error);
-      alert('Unable to connect to the server.');
+      setMessage('Unable to connect to the server.');
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -62,10 +81,11 @@ export default function SignUp() {
           />
         </div>
 
-        <button type="submit">Login</button>
+        <button type="submit" disabled={isLoading}>
+          {isLoading ? 'Processing...' : 'Sign Up'}
+        </button>
 
-        <div className="footer-links">
-        </div>
+        {message && <p className={`message ${isLoading ? 'info' : 'feedback'}`}>{message}</p>}
       </form>
     </div>
   );
