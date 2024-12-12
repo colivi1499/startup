@@ -83,4 +83,4 @@ Have you ever been to a really good Taco Bell and wished you could share your ex
 ### WebSocket Deliverable
 - **websocket**
     - fetchs previous users post
-    
+    - Displayes active users
