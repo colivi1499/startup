@@ -79,3 +79,8 @@ Have you ever been to a really good Taco Bell and wished you could share your ex
     - New User registration added
     - Existing User Authentication
     - Logout button works 
+
+### WebSocket Deliverable
+- **websocket**
+    - fetchs previous users post
+    
