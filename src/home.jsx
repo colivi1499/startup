@@ -90,22 +90,7 @@ export default function Home() {
           >
             Github - Boston, Wade, Cameron
           </a>
-          <form className="d-flex" action="/search">
-            <input
-              className="form-control me-2"
-              type="search"
-              placeholder="Search..."
-              aria-label="Search"
-              name="search"
-            />
-            <button className="btn btn-primary purple-btn" type="submit">
-              Search
-            </button>
-          </form>
           <div className="d-flex gap-3">
-            <a href="add-friend.html" className="btn btn-link purple-lnk">
-              Add Friend
-            </a>
             <button onClick={() => navigate("/")} className="btn btn-link purple-lnk">
               LOGOUT
             </button>

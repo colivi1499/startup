@@ -37,6 +37,10 @@ export default function Login() {
     }
   };
 
+  const handleSignupClick = () => {
+    navigate('/signup');
+  };
+
   return (
     <div className="login-container">
       <form className="login-form" onSubmit={handleSubmit}>
@@ -73,7 +77,7 @@ export default function Login() {
         {errorMessage && <p className="error-message">{errorMessage}</p>}
 
         <div className="footer-links">
-          <a href="/signup">Create an account</a>
+          <button type="button" onClick={handleSignupClick}>Create an account</button>
         </div>
       </form>
     </div>
