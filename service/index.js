@@ -84,8 +84,59 @@ apiRouter.post('/signup', async (req, res, next) => {
   }
 });
 
+apiRouter.post('/save-rating', async (req, res) => {
+  const { username, location, menuItem, rating } = req.body;
 
+  if (!username || !location || !menuItem || !rating) {
+    console.error('Missing required fields for saving rating');
+    return res.status(400).send({ message: 'All fields are required.' });
+  }
 
+  try {
+    console.log('Save rating request received:', { username, location, menuItem, rating });
+
+    const db = await connectToDB();
+    console.log('Connected to database.');
+
+    // Save the rating in the "ratings" collection
+    const result = await db.collection('ratings').insertOne({
+      username,
+      location,
+      menuItem,
+      rating,
+      timestamp: new Date(),
+    });
+
+    console.log('Rating saved:', result);
+    res.status(201).send({ message: 'Rating saved successfully.' });
+  } catch (error) {
+    console.error('Error saving rating:', error);
+    res.status(500).send({ message: 'Internal server error.' });
+  }
+});
+
+apiRouter.get('/ratings', async (req, res) => {
+  const username = req.query.username; // Get the username from the query parameters
+
+  if (!username) {
+    console.error('Username is required to fetch ratings');
+    return res.status(400).send({ message: 'Username is required.' });
+  }
+
+  try {
+    const db = await connectToDB();
+    console.log('Connected to database.');
+
+    // Fetch ratings for the given username
+    const ratings = await db.collection('ratings').find({ username }).toArray();
+    console.log(`Found ${ratings.length} ratings for user ${username}`);
+
+    res.status(200).send(ratings);
+  } catch (error) {
+    console.error('Error fetching ratings:', error);
+    res.status(500).send({ message: 'Internal server error.' });
+  }
+});
 
 
 // Start the server

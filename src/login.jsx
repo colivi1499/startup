@@ -28,6 +28,7 @@ export default function Login() {
 
       if (response.ok) {
         console.log(data.message);
+        localStorage.setItem('currentUser', username);
         navigate('/home');
       } else {
         setErrorMessage(data.message || 'Invalid username or password.');
