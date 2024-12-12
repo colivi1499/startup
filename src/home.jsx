@@ -4,9 +4,9 @@ import './home.css';
 import { useNavigate } from "react-router-dom";
 
 export default function Home() {
-  const [quoteData, setQuoteData] = useState(null); // State for the quote
-  const [connectedUsers, setConnectedUsers] = useState(0); // State for WebSocket user count
-  const [posts, setPosts] = useState([]); // State for user posts
+  const [quoteData, setQuoteData] = useState(null); 
+  const [connectedUsers, setConnectedUsers] = useState(0); 
+  const [posts, setPosts] = useState([]); 
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedLocation, setSelectedLocation] = useState("");
   const [selectedMenuItem, setSelectedMenuItem] = useState("");
@@ -14,43 +14,43 @@ export default function Home() {
 
   const navigate = useNavigate();
 
-  // Fetch the quote on component mount
+  
   useEffect(() => {
     const url = "https://quote.cs260.click";
     fetch(url)
       .then((x) => x.json())
       .then((response) => {
-        setQuoteData(response); // Store the quote data as an object
+        setQuoteData(response); 
       })
       .catch((error) => {
         console.error("Error fetching quote:", error);
       });
   }, []);
 
-  // WebSocket connection setup
+  
   useEffect(() => {
     const ws = new WebSocket("ws://localhost:8080");
 
     ws.onmessage = (event) => {
       const data = JSON.parse(event.data);
-      setConnectedUsers(data.count); // Update the connected users count
+      setConnectedUsers(data.count); 
     };
 
     ws.onclose = () => {
       console.log("WebSocket connection closed.");
     };
 
-    return () => ws.close(); // Cleanup WebSocket on component unmount
+    return () => ws.close(); 
   }, []);
 
-  // Fetch user's posts (ratings) on component mount
+  
   useEffect(() => {
     const fetchUserPosts = async () => {
-      const currentUser = localStorage.getItem('currentUser'); // Get the username from localStorage
+      const currentUser = localStorage.getItem('currentUser'); 
 
       if (!currentUser) {
         console.error('No user is logged in.');
-        navigate('/'); // Redirect to login page if no user is logged in
+        navigate('/'); 
         return;
       }
 
@@ -59,7 +59,7 @@ export default function Home() {
         if (response.ok) {
           const userPosts = await response.json();
           console.log('Fetched user posts:', userPosts);
-          setPosts(userPosts); // Update the posts state with fetched data
+          setPosts(userPosts); 
         } else {
           console.error('Failed to fetch user posts');
         }
@@ -82,8 +82,7 @@ export default function Home() {
   const handlePostSubmit = async (event) => {
     event.preventDefault();
 
-    const currentUser = localStorage.getItem('currentUser'); // Retrieve the username from localStorage
-
+    const currentUser = localStorage.getItem('currentUser'); 
     if (!currentUser) {
       console.error('No user is logged in.');
       alert('You need to log in to submit a post.');
@@ -92,17 +91,17 @@ export default function Home() {
 
     if (selectedLocation && selectedMenuItem && rating > 0) {
       const newPost = {
-        username: currentUser, // Automatically set the username
+        username: currentUser, 
         location: selectedLocation,
         menuItem: selectedMenuItem,
         rating: rating,
       };
 
       try {
-        // Save the post locally
+       
         setPosts([...posts, newPost]);
 
-        // Send the data to the backend
+        
         const response = await fetch('/api/save-rating', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
@@ -118,7 +117,7 @@ export default function Home() {
         console.error('Error submitting rating:', error);
       }
 
-      closeModal(); // Close the modal after submission
+      closeModal(); 
     } else {
       console.error('All fields are required to submit a post.');
     }
@@ -131,7 +130,7 @@ export default function Home() {
           <span
             key={star}
             className={`star ${rating >= star ? "selected" : ""}`}
-            onClick={() => setRating(star)} // Allow rating selection
+            onClick={() => setRating(star)} 
           >
             ★
           </span>
@@ -162,8 +161,8 @@ export default function Home() {
           <div className="d-flex gap-3">
             <button
               onClick={() => {
-                localStorage.removeItem('currentUser'); // Clear the username from localStorage
-                navigate('/'); // Redirect to login page
+                localStorage.removeItem('currentUser'); 
+                navigate('/'); 
               }}
               className="btn btn-link purple-lnk"
             >

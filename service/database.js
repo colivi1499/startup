@@ -6,21 +6,21 @@ const dbConfig = require('./dbConfig.json');
 
 const url = `mongodb+srv://${dbConfig.username}:${dbConfig.password}@${dbConfig.hostname}`;
 
-let db; // Store the database connection to reuse
-let connectedClients = 0; // Track the number of WebSocket connections
+let db; 
+let connectedClients = 0; 
 
-// Function to connect to the database
+
 async function connectToDB() {
   if (!db) {
     const client = new MongoClient(url, { useNewUrlParser: true, useUnifiedTopology: true });
     await client.connect();
-    db = client.db('share'); // Replace 'share' with your actual database name
+    db = client.db('share');
     console.log('Connected to MongoDB');
   }
   return db;
 }
 
-// Test connection during startup
+
 (async function testConnection() {
   try {
     await connectToDB();
@@ -31,10 +31,9 @@ async function connectToDB() {
   }
 })();
 
-// WebSocket Server Setup
 const wss = new WebSocket.Server({ port: 8080 });
 
-// Broadcast the current connected clients count
+
 function broadcastCount() {
   wss.clients.forEach((client) => {
     if (client.readyState === WebSocket.OPEN) {
@@ -42,8 +41,6 @@ function broadcastCount() {
     }
   });
 }
-
-// WebSocket Event Handlers
 wss.on('connection', (ws) => {
   connectedClients++;
   console.log(`New WebSocket connection. Total connected clients: ${connectedClients}`);
@@ -56,7 +53,6 @@ wss.on('connection', (ws) => {
   });
 });
 
-// Utility functions
 function getUser(email) {
   return db.collection('user').findOne({ email: email });
 }
@@ -87,7 +83,7 @@ async function saveRating(email, location, menuItem, rating) {
   return result.insertedId;
 }
 
-// Export the saveRating function
+
 module.exports = {
   connectToDB,
   getUser,

@@ -3,7 +3,7 @@ const { connectToDB } = require('./database');
 const bcrypt = require('bcrypt');
 const app = express();
 
-// Use built-in JSON body parser middleware
+
 app.use(express.json());
 
 app.use(express.static('public'));
@@ -11,13 +11,13 @@ app.use(express.static('public'));
 app.set('trust proxy', true);
 
 const cors = require('cors');
-app.use(cors()); // Allow all origins
+app.use(cors()); 
 
-// Router for service endpoints
+
 const apiRouter = express.Router();
 app.use('/api', apiRouter);
 
-// Login endpoint
+
 apiRouter.post('/login', async (req, res) => {
   const { username, password } = req.body;
 
@@ -43,7 +43,7 @@ apiRouter.post('/login', async (req, res) => {
   }
 });
 
-// Define the signup route
+
 apiRouter.post('/signup', async (req, res, next) => {
   try {
     console.log('Signup request received:', req.body);
@@ -98,7 +98,7 @@ apiRouter.post('/save-rating', async (req, res) => {
     const db = await connectToDB();
     console.log('Connected to database.');
 
-    // Save the rating in the "ratings" collection
+   
     const result = await db.collection('ratings').insertOne({
       username,
       location,
@@ -116,7 +116,7 @@ apiRouter.post('/save-rating', async (req, res) => {
 });
 
 apiRouter.get('/ratings', async (req, res) => {
-  const username = req.query.username; // Get the username from the query parameters
+  const username = req.query.username; 
 
   if (!username) {
     console.error('Username is required to fetch ratings');
@@ -127,7 +127,7 @@ apiRouter.get('/ratings', async (req, res) => {
     const db = await connectToDB();
     console.log('Connected to database.');
 
-    // Fetch ratings for the given username
+   
     const ratings = await db.collection('ratings').find({ username }).toArray();
     console.log(`Found ${ratings.length} ratings for user ${username}`);
 
@@ -139,7 +139,7 @@ apiRouter.get('/ratings', async (req, res) => {
 });
 
 
-// Start the server
+
 const PORT = process.argv.length > 2 ? process.argv[2] : 4000;
 app.listen(PORT, () => {
   console.log(`Backend server is running on http://localhost:${PORT}`);
